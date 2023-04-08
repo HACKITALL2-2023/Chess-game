@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nova_chess/MultiplayerScreen.dart';
 import 'package:nova_chess/helper/navigation.dart';
 import 'package:nova_chess/home_tournaments.dart';
 import 'package:nova_chess/scrollable_map_world.dart';
@@ -13,6 +14,7 @@ class OwnRouter {
     static const String homeRoute = '/home';
     static const String tournamentsRoute = '/tournaments';
     static const String scrollableMapWorldRoute = '/scrollable_map_world';
+    static const String multiplayerRoute = '/multiplayer';
 
   static Route<dynamic> generateRoute(RouteSettings settings){
     switch(settings.name){
@@ -22,10 +24,12 @@ class OwnRouter {
         return CustomNavigation.createRoute(const SignUp(), signUpRoute, null);
       case homeRoute:
         return CustomNavigation.createRoute(const HomeScreen(), homeRoute, null);
-      case tournamentsRoute:
-        return CustomNavigation.createRoute(const HomeTournaments(), tournamentsRoute, null);
+      // case tournamentsRoute:
+      //   return CustomNavigation.createRoute(const HomeTournaments(), tournamentsRoute, null);
       case scrollableMapWorldRoute:
         return CustomNavigation.createRoute(const ScrollableMapWorld(), scrollableMapWorldRoute, null);
+      case multiplayerRoute:
+        return CustomNavigation.createRoute(MultiplayerScreen(), multiplayerRoute, null);
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

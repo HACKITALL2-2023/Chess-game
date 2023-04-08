@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget{
 
 enum ListItemsHome{
   adventureMode,
+  multiplayer,
   liveChess,
   puzzles,
   tournaments,
@@ -36,30 +37,35 @@ class _HomeScreenState extends State<HomeScreen>{
       'type': ListItemsHome.adventureMode
     },
     {
-      'image': Image.asset('assets/digital clock.png'),
-      'text': 'Live Chess',
-      'type': ListItemsHome.liveChess
-    },
-    {
-      'image': Image.asset('assets/puzzle_piece.png'),
-      'text': 'Puzzles',
-      'type': ListItemsHome.puzzles
-    },
-    {
-      'image': Image.asset('assets/trophy.png'),
-      'text': 'Tournaments',
-      'type': ListItemsHome.tournaments
-    },
-    {
-      'image': Image.asset('assets/whistle.png'),
-      'text': 'Coaches',
-      'type': ListItemsHome.coaches
-    },
-    {
-      'image': Image.asset('assets/joystick.png'),
-      'text': 'Minigames',
-      'type': ListItemsHome.minigames
-    },
+      'image': Image.asset('assets/rocket.png'),
+      'text': 'Multiplayer',
+      'type': ListItemsHome.multiplayer
+    }
+    // {
+    //   'image': Image.asset('assets/digital clock.png'),
+    //   'text': 'Live Chess',
+    //   'type': ListItemsHome.liveChess
+    // },
+    // {
+    //   'image': Image.asset('assets/puzzle_piece.png'),
+    //   'text': 'Puzzles',
+    //   'type': ListItemsHome.puzzles
+    // },
+    // {
+    //   'image': Image.asset('assets/trophy.png'),
+    //   'text': 'Tournaments',
+    //   'type': ListItemsHome.tournaments
+    // },
+    // {
+    //   'image': Image.asset('assets/whistle.png'),
+    //   'text': 'Coaches',
+    //   'type': ListItemsHome.coaches
+    // },
+    // {
+    //   'image': Image.asset('assets/joystick.png'),
+    //   'text': 'Minigames',
+    //   'type': ListItemsHome.minigames
+    // },
   ];
 
   void _navigationRoute(ListItemsHome type) async {
@@ -67,6 +73,8 @@ class _HomeScreenState extends State<HomeScreen>{
       await Navigator.of(context).pushNamed(OwnRouter.tournamentsRoute);
     } else if(type == ListItemsHome.adventureMode){
       await Navigator.of(context).pushNamed(OwnRouter.scrollableMapWorldRoute);
+    } else if(type == ListItemsHome.multiplayer) {
+      await Navigator.of(context).pushNamed(OwnRouter.multiplayerRoute);
     }
   }
 
