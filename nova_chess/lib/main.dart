@@ -22,7 +22,6 @@ Future<void> main() async {
   FirebaseDatabase database = FirebaseDatabase.instance;
   final storage = FirebaseStorage.instance;
 
-
   runApp(const MyApp());
 }
 
