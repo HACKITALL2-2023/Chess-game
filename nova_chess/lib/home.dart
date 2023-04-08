@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nova_chess/helper/routes.dart';
+import 'package:nova_chess/helper/user.dart';
 import 'package:nova_chess/scrollable_map_world.dart';
 import 'package:nova_chess/custom_widgets/background_widget.dart';
 import 'package:nova_chess/custom_widgets/custom_app_bar.dart';
@@ -81,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
+    final user = ModalRoute.of(context)!.settings.arguments as UserLogIn?;
 
     return Scaffold(
       key: scaffoldKey,
