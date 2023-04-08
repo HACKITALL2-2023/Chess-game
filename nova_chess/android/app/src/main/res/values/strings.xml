@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Becks</string>
+    <string name="facebook_app_id">231517259426927</string>
+    <string name="fb_login_protocol_scheme">fb231517259426927</string>
+    <string name="facebook_client_token">1c0dbc38cdde1bc7a4ad0b632853d56c</string>
+</resources>

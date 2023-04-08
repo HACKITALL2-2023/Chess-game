@@ -21,7 +21,7 @@ class OwnRouter {
       case signUpRoute:
         return CustomNavigation.createRoute(const SignUp(), signUpRoute, null);
       case homeRoute:
-        return CustomNavigation.createRoute(const HomeScreen(), homeRoute, null);
+        return CustomNavigation.createRoute(const HomeScreen(), homeRoute, settings.arguments);
       case tournamentsRoute:
         return CustomNavigation.createRoute(const HomeTournaments(), tournamentsRoute, null);
       case scrollableMapWorldRoute:
