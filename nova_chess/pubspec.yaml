@@ -44,6 +44,10 @@ dependencies:
   percent_indicator: ^4.2.3
   appinio_video_player: ^1.2.0
   flutter_chess_board: ^1.0.1
+  firebase_core: ^2.9.0
+  firebase_database: ^10.1.0
+  firebase_storage: ^11.1.0
+  firebase_auth: ^4.4.0
 
 dev_dependencies:
   flutter_test:

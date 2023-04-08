@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nova_chess/custom_widgets/check_box.dart';
 import 'package:nova_chess/custom_widgets/custom_button_blue.dart';
@@ -31,8 +32,6 @@ class _SignInState extends State<SignIn>{
 
   String _username = '';
   String _password = '';
-  String _testUsername = 'ana';
-  String _testPassword = 'mere';
   Color getColor(Set<MaterialState> states) => const Color(0xFFFFFFFF);
 
   void _setShowPassword(){
@@ -72,29 +71,37 @@ class _SignInState extends State<SignIn>{
   Future<void> _checkSignIn() async{
     _username = _usernameFieldController.text;
     _password = _passwordFieldController.text;
-    if (_username != _testUsername || _password != _testPassword) {
-      setState(() {
-      _wrongCredentials = true;
-      });
-    } else{
-      final prefs = await SharedPreferences.getInstance();
-      if (_saveCredentials){
-        setState(() {
-          _wrongCredentials = false;
-        });
-        await prefs.setString('password', _password);
-      }
-      await prefs.setBool('save_credentials', _saveCredentials);
-      await prefs.setString('username', _username);
 
-      if (!mounted) return;
-      await Navigator.of(context).pushNamedAndRemoveUntil(
-        OwnRouter.homeRoute,
-        (route) {
-          return false;
+    try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _username,
+          password: _password
+        );
+
+        final prefs = await SharedPreferences.getInstance();
+        if (_saveCredentials){
+          setState(() {
+            _wrongCredentials = false;
+          });
+          await prefs.setString('password', _password);
         }
-      );
-    }
+        await prefs.setBool('save_credentials', _saveCredentials);
+        await prefs.setString('username', _username);
+
+        if (!mounted) return;
+        await Navigator.of(context).pushNamedAndRemoveUntil(
+          OwnRouter.homeRoute,
+          (route) {
+            return false;
+          }
+        );
+        
+
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+            _wrongCredentials = true;
+          });
+      }
   }
 
   void _navigateForgotPassword(){
@@ -151,7 +158,7 @@ class _SignInState extends State<SignIn>{
                       textEditingController: _usernameFieldController,
                       onEditingComplete: _setUsername,
                       errorBorder: false,
-                      hintText: 'Your Username',
+                      hintText: 'Your email',
                       onTap: () => setState(() {
                         _wrongCredentials = false;
                       }),
