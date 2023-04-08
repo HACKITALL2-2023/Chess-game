@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:nova_chess/sign_in.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'helper/routes.dart';
 
@@ -10,7 +15,13 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  final storage = FirebaseStorage.instance;
+
 
   runApp(const MyApp());
 }

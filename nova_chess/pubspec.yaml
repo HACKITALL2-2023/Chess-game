@@ -43,6 +43,10 @@ dependencies:
   level_map: ^0.2.0
   percent_indicator: ^4.2.3
   appinio_video_player: ^1.2.0
+  firebase_core: ^2.9.0
+  firebase_database: ^10.1.0
+  firebase_storage: ^11.1.0
+  firebase_auth: ^4.4.0
 
 dev_dependencies:
   flutter_test:
