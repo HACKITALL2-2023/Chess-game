@@ -89,22 +89,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-  chess:
-    dependency: transitive
-    description:
-      name: chess
-      sha256: "69dd13135d2ad3fb523483488db811d4aea2e550bfd6454e93ceccaf042a8614"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.0"
-  chess_vectors_flutter:
-    dependency: transitive
-    description:
-      name: chess_vectors_flutter
-      sha256: "988ff9ec3fa00174f0c0bbe0d50ca776803d9c8fff84d326876ee8a2e11dce31"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.18"
   circular_countdown_timer:
     dependency: "direct main"
     description:
@@ -302,14 +286,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_chess_board:
-    dependency: "direct main"
-    description:
-      name: flutter_chess_board
-      sha256: f830a44acca1aec751bd4de551f1e5ac466d8bb67e6476e325c5b693398d5755
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -326,6 +302,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_login_facebook:
+    dependency: "direct main"
+    description:
+      name: flutter_login_facebook
+      sha256: "340595d5a386dde1695f31944993eff200ffc6c3d17ff76fa6c1283b6374c250"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.7.0"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -424,6 +408,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  list_ext:
+    dependency: transitive
+    description:
+      name: list_ext
+      sha256: a38869a6911830f39ace7534972d01e573e17917955b26215e54d5797eb8d5cd
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
   matcher:
     dependency: transitive
     description:
@@ -544,6 +536,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: b1c1ac5ce6688d77f65f3375a9abb9319b3cb32486bdc7a1e0fdf004d7ba4e47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -621,14 +621,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
-  state_notifier:
-    dependency: "direct main"
-    description:
-      name: state_notifier
-      sha256: "8fe42610f179b843b12371e40db58c9444f8757f8b69d181c97e50787caed289"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.2+1"
   stream_channel:
     dependency: transitive
     description:
@@ -661,14 +653,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
-  tuple:
-    dependency: transitive
-    description:
-      name: tuple
-      sha256: "0ea99cd2f9352b2586583ab2ce6489d1f95a5f6de6fb9492faaf97ae2060f0aa"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:

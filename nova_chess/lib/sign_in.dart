@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:nova_chess/custom_widgets/check_box.dart';
 import 'package:nova_chess/custom_widgets/custom_button_blue.dart';
 import 'package:nova_chess/custom_widgets/custom_text_field.dart';
@@ -7,10 +8,7 @@ import 'package:nova_chess/custom_widgets/custom_text_widget.dart';
 import 'package:nova_chess/custom_widgets/error_container.dart';
 import 'package:nova_chess/custom_widgets/logo_and_motto.dart';
 import 'package:nova_chess/custom_widgets/password_text_field.dart';
-import 'package:nova_chess/helper/navigation.dart';
-import 'package:nova_chess/home_tournaments.dart';
-import 'package:nova_chess/home.dart';
-import 'package:nova_chess/sign_up.dart';
+import 'package:nova_chess/helper/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'custom_widgets/background_widget.dart';
@@ -29,6 +27,7 @@ class _SignInState extends State<SignIn>{
   bool _saveCredentials = false;
   bool _showPassword = false;
   bool _wrongCredentials = false;
+  bool _facebookLogged = false;
 
   String _username = '';
   String _password = '';
@@ -85,8 +84,10 @@ class _SignInState extends State<SignIn>{
           });
           await prefs.setString('password', _password);
         }
+        _facebookLogged = false;
         await prefs.setBool('save_credentials', _saveCredentials);
         await prefs.setString('username', _username);
+        await prefs.setBool('facebookLogged', _facebookLogged);
 
         if (!mounted) return;
         await Navigator.of(context).pushNamedAndRemoveUntil(
@@ -95,13 +96,71 @@ class _SignInState extends State<SignIn>{
             return false;
           }
         );
-        
-
       } on FirebaseAuthException catch (e) {
         setState(() {
             _wrongCredentials = true;
           });
       }
+  }
+
+  void _facebookSignIn() async {
+    final fb = FacebookLogin();
+    final res = await fb.logIn(permissions: [
+      FacebookPermission.publicProfile,
+      FacebookPermission.email,
+    ]);
+
+    switch (res.status) {
+      case FacebookLoginStatus.success:
+        // Logged in
+        
+        // Send access token to server for validation and auth
+        final FacebookAccessToken? accessToken = res.accessToken;
+        print('Access token: ${accessToken!.token}');
+
+        // Get profile data
+        final profile = await fb.getUserProfile();
+        print('Hello, ${profile!.name}! You ID: ${profile.userId}');
+
+        // Get user profile image url
+        final imageUrl = await fb.getProfileImageUrl(width: 100);
+        print('Your profile image: $imageUrl');
+
+        // Get email (since we request email permission)
+        final email = await fb.getUserEmail();
+        // But user can decline permission
+        if (email != null)
+          print('And your email is $email');
+
+        UserLogIn user = UserLogIn(
+          accessToken.token,
+          profile.name, 
+          imageUrl,
+          email
+        );
+
+        _facebookLogged = true;
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('facebookLogged', _facebookLogged);
+
+        if (!mounted) return;
+        await Navigator.of(context).pushNamedAndRemoveUntil(
+          OwnRouter.homeRoute,
+          arguments: user,
+          (route) {
+            return false;
+          }
+        );
+
+        break;
+      case FacebookLoginStatus.cancel:
+        // User cancel log in
+        break;
+      case FacebookLoginStatus.error:
+        // Log in failed
+        print('Error while log in: ${res.error}');
+        break;
+    }
   }
 
   void _navigateForgotPassword(){
@@ -241,6 +300,16 @@ class _SignInState extends State<SignIn>{
                     text: 'Sign In',
                     textSize: 24,
                     onPressed: _checkSignIn,
+                  ),
+                  SizedBox(
+                    height: height * 0.03,
+                  ),
+                  CustomButtonBlue(
+                    width: width * 0.8,
+                    height: height * 0.1,
+                    text: 'Continue with Facebook',
+                    textSize: 24,
+                    onPressed: _facebookSignIn,
                   ),
                   SizedBox(
                     height: height * 0.03,

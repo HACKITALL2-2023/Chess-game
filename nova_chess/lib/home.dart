@@ -89,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
+	final user = ModalRoute.of(context)!.settings.arguments as UserLogIn?;
 
     return Scaffold(
       key: scaffoldKey,
@@ -147,5 +148,4 @@ class _HomeScreenState extends State<HomeScreen>{
       ),
     );
   }
-
 }
