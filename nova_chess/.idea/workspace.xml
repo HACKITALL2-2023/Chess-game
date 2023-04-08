@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ef2fb41e-8b7b-4d14-84a9-07052e913c18" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/bg_level.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/full_center_star.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/full_left_star.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/queen_pown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/queen_short.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/helper/board_square.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/level.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/cal_meteorit.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cal_meteorit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/random_video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/custom_widgets/background_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/custom_widgets/background_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/custom_widgets/custom_app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/custom_widgets/custom_app_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/custom_widgets/custom_pop_up_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/custom_widgets/custom_pop_up_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/scrollable_map_world.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/scrollable_map_world.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Ldj6qjVFxhRWfdMruaGum24w27" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/snap/flutter/common/flutter/bin/cache/dart-sdk" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef2fb41e-8b7b-4d14-84a9-07052e913c18" name="Changes" comment="" />
+      <created>1676207682479</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676207682479</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
