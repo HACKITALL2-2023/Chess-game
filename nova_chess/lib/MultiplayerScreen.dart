@@ -14,6 +14,7 @@ class _MultiplayerScreenState extends State<MultiplayerScreen> {
   late double height;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _myController = TextEditingController();
 
   final ChessBoardController _chessBoardController = ChessBoardController();
 
@@ -51,8 +52,27 @@ class _MultiplayerScreenState extends State<MultiplayerScreen> {
                 controller: _chessBoardController,
                 boardColor: BoardColor.darkBrown,
                 boardOrientation: PlayerColor.white,
-                onMove: () {},
+                onMove: () {
+                  setState(() {});
+                },
                 arrows: [],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color:Colors.deepPurpleAccent.withOpacity(0.7),
+                  border: Border.all(width: 5),
+                    borderRadius: BorderRadius.all(Radius.circular(15))
+                ),
+                width: width * 0.8,
+                height: height * 0.25,
+                child: ListView.builder(
+                    itemCount: _chessBoardController.getSan().length,
+                    itemBuilder: (BuildContext ctx, int index) {
+                      print(_chessBoardController.getSan().length);
+                      return Text(_chessBoardController.getSan()[index]!, style: TextStyle(color: Colors.white),);
+                    })
               ),
             ],
           ),
