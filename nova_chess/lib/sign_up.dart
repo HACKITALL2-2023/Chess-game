@@ -13,6 +13,7 @@ import 'package:nova_chess/helper/routes.dart';
 import 'package:nova_chess/helper/validations.dart';
 import 'package:nova_chess/sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'custom_widgets/password_text_field.dart';
 
@@ -122,7 +123,22 @@ class _SignUpState extends State<SignUp>{
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('save_credentials');
     await prefs.remove('password');
-    await prefs.setString('username', _usernameFieldController.text);
+    await prefs.setString('username', _emailFieldController.text);
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailFieldController.text,
+        password: _passwordFieldController.text
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
 
     if (!mounted) return;
     await Navigator.of(context).pushNamedAndRemoveUntil(
