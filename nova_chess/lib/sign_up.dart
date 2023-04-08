@@ -124,6 +124,7 @@ class _SignUpState extends State<SignUp>{
     await prefs.remove('save_credentials');
     await prefs.remove('password');
     await prefs.setString('username', _emailFieldController.text);
+    await prefs.setString('real_username', _usernameFieldController.text);
 
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(

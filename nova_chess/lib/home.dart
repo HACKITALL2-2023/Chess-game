@@ -7,6 +7,7 @@ import 'package:nova_chess/custom_widgets/custom_row_home.dart';
 import 'package:nova_chess/custom_widgets/custom_text_widget.dart';
 
 import 'helper/navigation.dart';
+import 'helper/user.dart';
 import 'home_tournaments.dart';
 
 class HomeScreen extends StatefulWidget{
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-	final user = ModalRoute.of(context)!.settings.arguments as UserLogIn?;
+	  final user = ModalRoute.of(context)!.settings.arguments as UserLogIn?;
 
     return Scaffold(
       key: scaffoldKey,
