@@ -131,6 +131,9 @@ class _MultiplayerScreenState extends State<MultiplayerScreen> {
             width: width,
             height: height
         ),
+        floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.of(context).pushNamed(OwnRouter.chatRoute);
+      }),
         body: BackgroundLevelWidget(
           height: height,
           width: width,

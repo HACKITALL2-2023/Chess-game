@@ -12,5 +12,4 @@ class UserLogIn{
     this.imageUrl,
     this.email
   );
-
 }
