@@ -171,6 +171,37 @@ class _SignInState extends State<SignIn>{
     }
   }
 
+  void _GuestSignIn() async {
+    try {
+      final user=
+          await FirebaseAuth.instance.signInAnonymously();
+      print("Signed in with temporary account.");
+
+      var sendUser = UserLogIn('', '', '', '');
+
+      if (!mounted) return;
+        await Navigator.of(context).pushNamedAndRemoveUntil(
+          OwnRouter.homeRoute,
+          arguments: sendUser,
+          (route) {
+            return false;
+          }
+        );
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+            _wrongCredentials = true;
+          });
+        switch (e.code) {
+          case "operation-not-allowed":
+            print("Anonymous auth hasn't been enabled for this project.");
+            break;
+          default:
+            print("Unknown error.");
+        }
+      }
+  }
+
+
   void _navigateForgotPassword(){
     print('navigated to forgot password');
   }
@@ -318,6 +349,16 @@ class _SignInState extends State<SignIn>{
                     text: 'Continue with Facebook',
                     textSize: 24,
                     onPressed: _facebookSignIn,
+                  ),
+                  SizedBox(
+                    height: height * 0.03,
+                  ),
+                     CustomButtonBlue(
+                    width: width * 0.8,
+                    height: height * 0.1,
+                    text: 'Guest',
+                    textSize: 24,
+                    onPressed: _GuestSignIn,
                   ),
                   SizedBox(
                     height: height * 0.03,

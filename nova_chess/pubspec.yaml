@@ -51,7 +51,6 @@ dependencies:
   state_notifier: ^0.7.2+1
   flutter_login_facebook: ^1.7.0
   cloud_firestore: ^4.5.0
-  webcrypto: ^0.5.2
   permission_handler: ^10.2.0
   agora_rtc_engine: ^6.1.0
 
