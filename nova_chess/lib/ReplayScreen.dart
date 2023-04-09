@@ -119,6 +119,7 @@ class _ReplayScreenState extends State<ReplayScreen> {
                 controller: _chessBoardController,
                 boardColor: BoardColor.darkBrown,
                 boardOrientation: PlayerColor.white,
+                // size: width * 0.4,
                 enableUserMoves: false,
                 onMove: () {
                   setState(() {});

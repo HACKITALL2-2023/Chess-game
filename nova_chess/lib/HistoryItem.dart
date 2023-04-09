@@ -29,10 +29,10 @@ class HistoryItem extends StatelessWidget {
     return InkWell(
       child: Center(
         child: Container(
+          margin: EdgeInsets.fromLTRB(0, 50, 0, 50),
           // color: Colors.blue,
           height: 0.3 * height,
           width: width * 0.8,
-          padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
               color: Color(0xFF758ECD).withOpacity(0.3),
               borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -44,48 +44,53 @@ class HistoryItem extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: 0.05 * height,
-                    width: width * 0.20,
+                    // width: width * 0.20,
                     child: Text(
                       result,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          color: result == "WIN" ? Colors.green : Colors.red),
+                          color: result == "WIN" ? Colors.white : Colors.white),
                     ),
                   ),
                   SizedBox(
                     height: 0.05 * height,
-                    width: width * 0.20,
+                    // width: width * 0.20,
                     child: Text(
                       'VS',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                   SizedBox(
                     height: 0.05 * height,
-                    width: width * 0.20,
+                    // width: width * 0.20,
                     child: Text(
                       username,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
+                        color: Colors.white
                       ),
                     ),
                   ),
                 ],
               ),
               Center(
-                child: Text('Moves: $noMoves'),
+                child: Text('Moves: $noMoves',
+                      style: TextStyle(color: Colors.white),),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   SizedBox(
-                    height: 0.05 * height,
-                    width: width * 0.20,
+                    height: 0.07 * height,
+                    width: width * 0.4,
                     child: Text(
                       date,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
+                        color: Colors.white
                       ),
                     ),
                   ),
@@ -97,7 +102,7 @@ class HistoryItem extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         decoration: TextDecoration.underline,
-                        color: Colors.blueAccent,
+                        color: Colors.white,
                       ),
                     ),
                   ),

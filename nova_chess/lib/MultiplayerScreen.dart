@@ -232,6 +232,7 @@ class _MultiplayerScreenState extends State<MultiplayerScreen> {
                 controller: _chessBoardController,
                 enableUserMoves: true,
                 boardColor: BoardColor.darkBrown,
+                // size: width * 0.4,
                 boardOrientation:
                     (user.player1) ? PlayerColor.white : PlayerColor.black,
                 onMove: () {
