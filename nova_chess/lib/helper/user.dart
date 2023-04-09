@@ -3,6 +3,8 @@ class UserLogIn{
   late String? name;
   late String? imageUrl;
   late String? email;
+  String gameId = '';
+  bool player1 = true;
 
   UserLogIn(
     this.token,

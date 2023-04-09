@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nova_chess/helper/routes.dart';
 import 'package:nova_chess/scrollable_map_world.dart';
@@ -6,7 +7,10 @@ import 'package:nova_chess/custom_widgets/custom_app_bar.dart';
 import 'package:nova_chess/custom_widgets/custom_row_home.dart';
 import 'package:nova_chess/custom_widgets/custom_text_widget.dart';
 
+import 'custom_widgets/custom_button_blue.dart';
+import 'custom_widgets/custom_text_field.dart';
 import 'helper/navigation.dart';
+import 'helper/user.dart';
 import 'home_tournaments.dart';
 
 class HomeScreen extends StatefulWidget{
@@ -23,12 +27,16 @@ enum ListItemsHome{
   puzzles,
   tournaments,
   coaches,
-  minigames
+  minigames,
+  joinMultiplayer
 }
 
 class _HomeScreenState extends State<HomeScreen>{
   final ScrollController _scrollViewController = ScrollController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+  final TextEditingController _gameIdFieldController = TextEditingController();
+  bool _gameIDValide = true;
   
   final List _dataRow = [
     {
@@ -40,7 +48,12 @@ class _HomeScreenState extends State<HomeScreen>{
       'image': Image.asset('assets/rocket.png'),
       'text': 'Multiplayer',
       'type': ListItemsHome.multiplayer
-    }
+    },
+    {
+      'image': Image.asset('assets/rocket.png'),
+      'text': 'Join Multiplayer',
+      'type': ListItemsHome.joinMultiplayer
+    },
     // {
     //   'image': Image.asset('assets/digital clock.png'),
     //   'text': 'Live Chess',
@@ -68,13 +81,82 @@ class _HomeScreenState extends State<HomeScreen>{
     // },
   ];
 
-  void _navigationRoute(ListItemsHome type) async {
+  Future<void> _tryToJoinGame(UserLogIn user, context) async {
+    DatabaseReference ref = database.ref('meciuri/${_gameIdFieldController.text}');
+    DatabaseEvent databaseEvent = await ref.once();
+    DataSnapshot snapshot = databaseEvent.snapshot;
+
+    if (snapshot.value != null){
+      user.gameId = _gameIdFieldController.text;
+      await ref.update({
+        'player2': 'mircea'
+      });
+      await Navigator.of(context).pushNamed(OwnRouter.multiplayerRoute, arguments: user);
+    } else {
+      setState(() {
+        _gameIDValide = false;
+      });
+    }
+  }
+
+  void _navigationRoute(ListItemsHome type, UserLogIn user, double width, double height) async {
     if(type == ListItemsHome.tournaments){
       await Navigator.of(context).pushNamed(OwnRouter.tournamentsRoute);
     } else if(type == ListItemsHome.adventureMode){
       await Navigator.of(context).pushNamed(OwnRouter.scrollableMapWorldRoute);
     } else if(type == ListItemsHome.multiplayer) {
-      await Navigator.of(context).pushNamed(OwnRouter.multiplayerRoute);
+      user.player1 = true;
+      user.gameId = '';
+      await Navigator.of(context).pushNamed(OwnRouter.multiplayerRoute, arguments: user);
+    } else if(type == ListItemsHome.joinMultiplayer) {
+      user.player1 = false;
+      user.gameId = '';
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Game id'),
+            content: Column(
+              children: [
+                CustomTextField(
+                  context: context,
+                  width: width * 0.8,
+                  height: height * 0.1,
+                  textEditingController: _gameIdFieldController,
+                  onEditingComplete: (context) => {
+                    setState(() {
+                      FocusScope.of(context).unfocus();
+                    })
+                  },
+                  onTap: () {
+                    setState(() {
+                      _gameIDValide = true;
+                    });
+                  },
+                  errorBorder: false,
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                if(!_gameIDValide)
+                  const CustomTextWidgetError(
+                    text: 'Wrong ID',
+                    textSize: 14
+                  )
+              ],
+            ),
+            actions: [
+              CustomButtonBlue(
+                width: width * 0.3,
+                height: height * 0.1,
+                text: 'Join Game',
+                textSize: 14,
+                onPressed: () => _tryToJoinGame(user, context)
+              )
+            ],
+          );
+        }
+      );
     }
   }
 
@@ -82,6 +164,8 @@ class _HomeScreenState extends State<HomeScreen>{
   void dispose(){
     _scrollViewController.removeListener(() {});
     _scrollViewController.dispose();
+    _gameIdFieldController.removeListener(() { });
+    _gameIdFieldController.dispose();
     super.dispose();
   }
 
@@ -89,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-	final user = ModalRoute.of(context)!.settings.arguments as UserLogIn?;
+	  final user = ModalRoute.of(context)!.settings.arguments as UserLogIn;
 
     return Scaffold(
       key: scaffoldKey,
@@ -117,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen>{
                   height: height,
                   imageButton: row['image'],
                   buttonText: row['text'],
-                  onPressed: () => _navigationRoute(row['type']),
+                  onPressed: () => _navigationRoute(row['type'], user, width, height),
                 ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
