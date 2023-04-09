@@ -845,14 +845,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
-  webcrypto:
-    dependency: "direct main"
-    description:
-      name: webcrypto
-      sha256: a3cc45ce5efa053435505a958d32785f7497a684a859e6910d805ddf094f903f
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.3"
   win32:
     dependency: transitive
     description:
