@@ -31,7 +31,7 @@ class OwnRouter {
       case scrollableMapWorldRoute:
         return CustomNavigation.createRoute(const ScrollableMapWorld(), scrollableMapWorldRoute, null);
       case multiplayerRoute:
-        return CustomNavigation.createRoute(MultiplayerScreen(), multiplayerRoute, null);
+        return CustomNavigation.createRoute(MultiplayerScreen(), multiplayerRoute, settings.arguments);
       case chatRoute:
         return CustomNavigation.createRoute(ChatScreen(), chatRoute, null);
       default:
