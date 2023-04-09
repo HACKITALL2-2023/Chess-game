@@ -31,6 +31,7 @@ enum ListItemsHome{
   minigames,
   joinMultiplayer,
   history,
+  replay
   friends
 }
 
