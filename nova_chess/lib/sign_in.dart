@@ -89,9 +89,17 @@ class _SignInState extends State<SignIn>{
         await prefs.setString('username', _username);
         await prefs.setBool('facebookLogged', _facebookLogged);
 
+        UserLogIn user = UserLogIn(
+          '',
+          '', 
+          '',
+          _username
+        );
+
         if (!mounted) return;
         await Navigator.of(context).pushNamedAndRemoveUntil(
           OwnRouter.homeRoute,
+          arguments: user,
           (route) {
             return false;
           }

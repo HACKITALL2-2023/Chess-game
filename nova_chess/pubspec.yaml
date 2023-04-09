@@ -43,11 +43,17 @@ dependencies:
   level_map: ^0.2.0
   percent_indicator: ^4.2.3
   appinio_video_player: ^1.2.0
+  flutter_chess_board: ^1.0.1
   firebase_core: ^2.9.0
   firebase_database: ^10.1.0
   firebase_storage: ^11.1.0
   firebase_auth: ^4.4.0
+  state_notifier: ^0.7.2+1
   flutter_login_facebook: ^1.7.0
+  cloud_firestore: ^4.5.0
+  webcrypto: ^0.5.2
+  permission_handler: ^10.2.0
+  agora_rtc_engine: ^6.1.0
 
 dev_dependencies:
   flutter_test:
