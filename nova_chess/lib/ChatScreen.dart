@@ -9,6 +9,14 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(
+            Icons.video_call_outlined,
+            color: Colors.indigo,
+          ),),
+        ],
+      ),
       body: Container(
         child: Column(
           children: <Widget>[

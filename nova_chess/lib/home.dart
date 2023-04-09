@@ -28,7 +28,8 @@ enum ListItemsHome{
   tournaments,
   coaches,
   minigames,
-  joinMultiplayer
+  joinMultiplayer,
+  history
 }
 
 class _HomeScreenState extends State<HomeScreen>{
@@ -54,11 +55,11 @@ class _HomeScreenState extends State<HomeScreen>{
       'text': 'Join Multiplayer',
       'type': ListItemsHome.joinMultiplayer
     },
-    // {
-    //   'image': Image.asset('assets/digital clock.png'),
-    //   'text': 'Live Chess',
-    //   'type': ListItemsHome.liveChess
-    // },
+{
+      'image': Image.asset('assets/digital clock.png'),
+      'text': 'History',
+      'type': ListItemsHome.history
+    },
     // {
     //   'image': Image.asset('assets/puzzle_piece.png'),
     //   'text': 'Puzzles',
@@ -157,6 +158,8 @@ class _HomeScreenState extends State<HomeScreen>{
           );
         }
       );
+    } else if(type == ListItemsHome.history) {
+      await Navigator.of(context).pushNamed(OwnRouter.historyRoute);
     }
   }
 
