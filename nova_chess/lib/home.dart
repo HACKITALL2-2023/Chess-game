@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nova_chess/helper/routes.dart';
@@ -29,7 +30,8 @@ enum ListItemsHome{
   coaches,
   minigames,
   joinMultiplayer,
-  history
+  history,
+  friends
 }
 
 class _HomeScreenState extends State<HomeScreen>{
@@ -55,10 +57,15 @@ class _HomeScreenState extends State<HomeScreen>{
       'text': 'Join Multiplayer',
       'type': ListItemsHome.joinMultiplayer
     },
-{
+    {
       'image': Image.asset('assets/digital clock.png'),
       'text': 'History',
       'type': ListItemsHome.history
+    },
+    {
+      'image': Image.asset('assets/digital clock.png'),
+      'text': 'Friends',
+      'type': ListItemsHome.friends,
     },
     // {
     //   'image': Image.asset('assets/puzzle_piece.png'),
@@ -177,6 +184,8 @@ class _HomeScreenState extends State<HomeScreen>{
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 	  final user = ModalRoute.of(context)!.settings.arguments as UserLogIn;
+
+    FirebaseAuth.instance.currentUser!.isAnonymous ? _dataRow.removeAt(1) : null;
 
     return Scaffold(
       key: scaffoldKey,

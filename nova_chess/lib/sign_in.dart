@@ -177,9 +177,12 @@ class _SignInState extends State<SignIn>{
           await FirebaseAuth.instance.signInAnonymously();
       print("Signed in with temporary account.");
 
+      var sendUser = UserLogIn('', '', '', '');
+
       if (!mounted) return;
         await Navigator.of(context).pushNamedAndRemoveUntil(
           OwnRouter.homeRoute,
+          arguments: sendUser,
           (route) {
             return false;
           }
