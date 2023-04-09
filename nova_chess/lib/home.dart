@@ -29,7 +29,8 @@ enum ListItemsHome{
   coaches,
   minigames,
   joinMultiplayer,
-  history
+  history,
+  replay
 }
 
 class _HomeScreenState extends State<HomeScreen>{

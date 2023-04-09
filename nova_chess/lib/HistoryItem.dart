@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'helper/Game.dart';
+import 'helper/routes.dart';
+
 class HistoryItem extends StatelessWidget {
   const HistoryItem({
     required this.width,
@@ -9,6 +12,7 @@ class HistoryItem extends StatelessWidget {
     required this.username,
     required this.result,
     required this.key,
+    required this.moves,
   });
 
   final Key key;
@@ -18,6 +22,7 @@ class HistoryItem extends StatelessWidget {
   final int noMoves;
   final String username;
   final String result;
+  final String moves;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +107,17 @@ class HistoryItem extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () => {},
+      onTap: () => {
+        Navigator.of(context).pushNamed(OwnRouter.replayRoute,
+            arguments: Game(
+                id: key,
+                username: username,
+                noMoves: noMoves,
+                moves: moves,
+                date: date,
+                result: result,
+            ))
+      },
     );
   }
 }

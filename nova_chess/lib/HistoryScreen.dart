@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nova_chess/HistoryItem.dart';
 import 'package:nova_chess/custom_widgets/background_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'custom_widgets/custom_app_bar.dart';
 
@@ -31,42 +32,47 @@ class _HistoryScreenState extends State<HistoryScreen> {
           height: height,
           width: width,
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: EdgeInsets.symmetric(horizontal: 40),
               child: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('history').doc(user?.uid).collection('games')
-                .orderBy(
-                  'date',
-                  descending: true,
-                )
-                .snapshots(),
-            builder: (ctx, AsyncSnapshot<QuerySnapshot> chatSnapshot) {
-              if (chatSnapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              final chatDocs = chatSnapshot.data?.docs;
-              return ListView.builder(
-                  itemCount: chatDocs?.length,
-                  itemBuilder: (ctx, index) {
-                    final chatDoc = chatDocs?[index];
-                    final date = chatDoc?.get('date').toString() ?? '';
-                    final username = chatDoc?.get('username') ?? '';
-                    final noMoves = chatDoc?.get('no_moves') ?? 0;
-                    final key = ValueKey(chatDoc?.id);
-                    final result = chatDoc?.get('result') ?? 'Undefined';
-                    return HistoryItem(
-                        width: width,
-                        height: height,
-                        date: date,
-                        noMoves: noMoves,
-                        username: username,
-                        result: result,
-                        key: key);
-                  });
-            },
-          )),
+                stream: FirebaseFirestore.instance
+                    .collection('history')
+                    .doc(user?.uid)
+                    .collection('games')
+                    .orderBy(
+                      'date',
+                      descending: true,
+                    )
+                    .snapshots(),
+                builder: (ctx, AsyncSnapshot<QuerySnapshot> chatSnapshot) {
+                  if (chatSnapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  final chatDocs = chatSnapshot.data?.docs;
+                  return ListView.builder(
+                      itemCount: chatDocs?.length,
+                      itemBuilder: (ctx, index) {
+                        final chatDoc = chatDocs?[index];
+                        final date = chatDoc?.get('date').toString() ?? '';
+                        final username = chatDoc?.get('username') ?? '';
+                        final noMoves = chatDoc?.get('no_moves') ?? 0;
+                        final moves = chatDoc?.get('moves') ?? '';
+                        final key = ValueKey(chatDoc?.id);
+                        final result = chatDoc?.get('result') ?? 'Undefined';
+                        return HistoryItem(
+                          width: width,
+                          height: height,
+                          date: date,
+                          noMoves: noMoves,
+                          username: username,
+                          result: result,
+                          key: key,
+                          moves: moves,
+                        );
+                      });
+                },
+              )),
         ));
   }
 }
